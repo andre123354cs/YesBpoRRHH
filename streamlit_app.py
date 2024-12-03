@@ -12,7 +12,7 @@ funcionarios = {
     "Francy Guapacha": "Recursos Humanos",
     "Heidy Mora": "Ventas"
 }
-lista_funcionarios = list(funcionarios.keys())
+lista_funcionarios = sorted(funcionarios.keys())
 
 st.markdown("""
 <div style="display: flex; justify-content: space-between; align-items: center;">
