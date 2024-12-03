@@ -1,13 +1,16 @@
-
-
 import altair as alt
 import pandas as pd
 import sqlite3
 import streamlit as st
 
 st.markdown("""
-    <h1 style='text-align: left; color: #008f4c; font-size: 50px;'>🌍 RRHH YesBpo</h1>
-    """, unsafe_allow_html=True)
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <img src="https://cdn-icons-png.flaticon.com/128/6429/6429114.png" alt="RRHH YesBpo Logo" width="100" height="100">
+  <h1 style='color: #008f4c; font-size: 50px;'> RRHH YesBpo</h1>
+  <img src="https://tse3.mm.bing.net/th?id=OIP.mgZxMZpR_P9RB4qAfF1FXQHaGg&pid=Api&P=0&h=180" alt="Otro logo" width="100" height="100">
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("""
     <h1 style='text-align: left; color: #008f4c; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
     """, unsafe_allow_html=True)
@@ -89,33 +92,32 @@ def main():
                 db.guardar_novedad(fecha, nombre, novedad, observacion)
                 st.success("Novedad guardada correctamente")
 
-    # Pestaña para ver datos por funcionario
-    with st.expander("Funcionarios "):
-        funcionarios = db.obtener_novedades()["nombre_funcionario"].unique()
-        funcionario_seleccionado = st.selectbox("Seleccionar funcionario", funcionarios)
-        df_filtrado = db.obtener_novedades(f"nombre_funcionario = '{funcionario_seleccionado}'")
-        st.dataframe(df_filtrado)
-        st.altair_chart(generar_grafico(df_filtrado, f"Novedades de {funcionario_seleccionado}"), use_container_width=True)
-
-    # Pestaña para ver datos consolidados
-    with st.expander("Consolidado"):
+    with st.expander("Funcionarios"):
         df = db.obtener_novedades()
 
-        # Crear los selectores de fecha
+        # Selector de funcionarios (todos o uno en específico)
+        funcionarios = df["nombre_funcionario"].unique()
+        funcionario_seleccionado = st.selectbox("Seleccionar funcionario", [None] + list(funcionarios), index=0)
+
+        # Selectores de fecha
         fecha_inicio = st.date_input("Fecha de inicio")
         fecha_fin = st.date_input("Fecha de fin")
 
-        # Filtrar los datos según las fechas seleccionadas
-        if fecha_inicio and fecha_fin:
-            df_filtrado = df[(df['fecha'] >= str(fecha_inicio)) & (df['fecha'] <= str(fecha_fin))]
+        # Filtrar los datos
+        if funcionario_seleccionado:
+            df_filtrado = df[df['nombre_funcionario'] == funcionario_seleccionado]
         else:
             df_filtrado = df
+        
+        if fecha_inicio and fecha_fin:
+            df_filtrado = df_filtrado[(df_filtrado['fecha'] >= str(fecha_inicio)) & (df_filtrado['fecha'] <= str(fecha_fin))]
 
         # Mostrar el DataFrame filtrado
         st.dataframe(df_filtrado)
 
         # Generar el gráfico
-        st.altair_chart(generar_grafico(df_filtrado, "Número de novedades por tipo"), use_container_width=True)
+        st.altair_chart(generar_grafico(df_filtrado, f"Novedades de {funcionario_seleccionado or 'Todos los funcionarios'}"), use_container_width=True)
+        
 
 if __name__ == "__main__":
     main()
