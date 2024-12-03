@@ -7,7 +7,12 @@ import streamlit as st
 # Configuración de la página para modo ancho
 st.set_page_config(layout="wide")
 
-
+funcionarios = {
+    "Juan Pérez": "Contabilidad",
+    "María López": "Recursos Humanos",
+    "Pedro García": "Ventas"
+}
+lista_funcionarios = list(funcionarios.keys())
 
 st.markdown("""
 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -90,7 +95,10 @@ def main():
     with st.expander("Registro de Novedades 📂"):
         with st.form("my_form"):
             fecha = st.date_input("Fecha")
-            nombre = st.text_input("Nombre del funcionario")
+            nombre = st.selectbox("Selecciona un funcionario", lista_funcionarios)
+            if nombre_seleccionado:
+                st.write(f"Información de {nombre_seleccionado}:")
+                st.write(f"Departamento: {funcionarios[nombre_seleccionado]}")
             novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro"])
             observacion = st.text_area("Observación")
             submitted = st.form_submit_button("Guardar")
