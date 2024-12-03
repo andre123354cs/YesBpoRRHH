@@ -66,7 +66,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 def crear_tabla_novedades():
-    conn = sqlite3.connect('novedad.db')
+    conn = sqlite3.connect('noveda.db')
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -87,7 +87,7 @@ crear_tabla_novedades()
 
 # Función para establecer conexión a la base de datos
 def get_db_connection():
-    conn = sqlite3.connect('novedad.db')
+    conn = sqlite3.connect('noveda.db')
     return conn
 
 # Clase para gestionar las operaciones de la base de datos
@@ -135,7 +135,7 @@ def main():
         with st.form("my_form"):
             fecha = st.date_input("Fecha")
             nombre = st.selectbox("Selecciona un funcionario", lista_funcionarios)    
-            novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro","Incapacidad","Cita Medica","Calamidad Domestica","Calamidad Familiar"])
+            novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro","Incapacidad","Cita Medica","Calamidad Domestica","Calamidad Familiar","Renuncia"])
             observacion = st.text_area("Observación")
             submitted = st.form_submit_button("Guardar")
             if submitted:
