@@ -10,7 +10,7 @@ st.set_page_config(layout="wide")
 funcionarios = {
     "Andres Vanegas": "Contabilidad",
     "Francy Guapacha": "Recursos Humanos",
-    "Heidy Mora": "Ventas"
+    "Heidy Mora": "Ventas",
     "Andres Diaz": "Contabilidad",
     "JHony Triana": "Recursos Humanos",
     "Esteban Triana": "Ventas"
