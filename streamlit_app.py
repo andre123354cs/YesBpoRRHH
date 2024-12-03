@@ -15,27 +15,55 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 import streamlit as st
+import pandas as pd
 
-def guardar_novedad(fecha, nombre, novedad, observacion):
-    # Aquí implementarías la lógica para guardar los datos
-    # ... (validar datos, conectar a la base de datos, etc.)
+def guardar_novedad(fecha, nombre, novedad, observacion, archivo=None):
+    """
+    Guarda la novedad en un archivo CSV.
+    Puedes personalizar esta función para guardar los datos en una base de datos o realizar otras acciones.
+    """
+
+    # Crear un diccionario con los datos de la novedad
+    data = {'Fecha': fecha, 'Nombre': nombre, 'Novedad': novedad, 'Observación': observacion}
+    if archivo:
+        data['Archivo'] = archivo
+
+    # Crear un DataFrame de pandas
+    df = pd.DataFrame([data])
+
+    # Append to an existing CSV file, or create a new one
+    try:
+        df.to_csv('novedades.csv', mode='a', header=False, index=False)
+    except FileNotFoundError:
+        df.to_csv('novedades.csv', index=False)
+
     st.success("Novedad guardada correctamente")
 
 with st.form("my_form"):
-    st.write("Registrar Novedad")
+    st.title("Registrar Novedad")
 
-    fecha = st.date_input("Fecha", min_value=st.date.today())  # Limitar a fechas a partir de hoy
+    fecha = st.date_input("Fecha", min_value=st.date.today())
     nombre = st.text_input("Nombre del funcionario")
     novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro"])
     if novedad == "Otro":
         otro_novedad = st.text_input("Especificar otra novedad")
 
-    observacion = st.text_area("Observación", max_chars=255)  # Limitar la longitud
+    observacion = st.text_area("Observación", max_chars=255)
+
+    # Agregar un campo para subir archivos
+    archivo = st.file_uploader("Subir archivo (opcional)")
 
     submitted = st.form_submit_button("Guardar")
     if submitted:
         if nombre == "":
             st.error("Por favor, ingrese el nombre del funcionario.")
         else:
-            # Validar otros campos
-            guardar_novedad(fecha, nombre, novedad, observacion)
+            guardar_novedad(fecha, nombre, novedad, observacion, archivo)
+
+# Mostrar un DataFrame con las novedades (opcional)
+if st.checkbox("Ver novedades"):
+    try:
+        df = pd.read_csv('novedades.csv')
+        st.dataframe(df)
+    except FileNotFoundError:
+        st.info("Aún no hay novedades registradas.")
