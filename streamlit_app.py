@@ -15,7 +15,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Título de la aplicación
-st.title("Visualizador de archivos CSV")
+st.title("rrhh - Hoja 1.csv")
 
 # Cargar el archivo
 uploaded_file = st.file_uploader("Selecciona un archivo CSV", type=["csv"])
