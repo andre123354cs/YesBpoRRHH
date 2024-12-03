@@ -135,7 +135,7 @@ def main():
         with st.form("my_form"):
             fecha = st.date_input("Fecha")
             nombre = st.selectbox("Selecciona un funcionario", lista_funcionarios)    
-            novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro"])
+            novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro","Incapacidad","Cita Medica","Calamidad Domestica","Calamidad Familiar"])
             observacion = st.text_area("Observación")
             submitted = st.form_submit_button("Guardar")
             if submitted:
