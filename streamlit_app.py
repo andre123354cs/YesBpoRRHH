@@ -96,7 +96,7 @@ def main():
         with st.form("my_form"):
             fecha = st.date_input("Fecha")
             nombre = st.selectbox("Selecciona un funcionario", lista_funcionarios)
-            if nombre_seleccionado:
+            if nombre:
                 st.write(f"Información de {nombre_seleccionado}:")
                 st.write(f"Departamento: {funcionarios[nombre_seleccionado]}")
             novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro"])
