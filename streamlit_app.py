@@ -3,6 +3,14 @@ import pandas as pd
 import sqlite3
 import streamlit as st
 
+
+# Configuración de la página para modo ancho
+st.set_page_config(layout="wide")
+
+with open('styles.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
 st.markdown("""
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <img src="https://cdn-icons-png.flaticon.com/128/6429/6429114.png" alt="RRHH YesBpo Logo" width="100" height="100">
