@@ -8,9 +8,9 @@ import streamlit as st
 st.set_page_config(layout="wide")
 
 funcionarios = {
-    "Juan Pérez": "Contabilidad",
-    "María López": "Recursos Humanos",
-    "Pedro García": "Ventas"
+    "Andres Vanegas": "Contabilidad",
+    "Francy Guapacha": "Recursos Humanos",
+    "Heidy Mora": "Ventas"
 }
 lista_funcionarios = list(funcionarios.keys())
 
