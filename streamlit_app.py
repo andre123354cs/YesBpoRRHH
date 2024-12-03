@@ -14,15 +14,19 @@ st.markdown("""
     <h1 style='text-align: left; color: #008f4c; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
     """, unsafe_allow_html=True)
 
-import git
-import pandas as pd
+tab1, tab2, tab3 = st.tabs(["Registro de Novedades 📂", "Funcionarios 👔","Consolidado 📊"])
 
-# Clonar el repositorio
-repo = git.Repo.clone_from('https://github.com/tu_usuario/tu_repositorio.git', 'tu_carpeta_local')
+with tab1:
 
-# Obtener el archivo
-file_path = 'tu_carpeta_local/rrhh - Hoja 1.csv'
+    # Crear el formulario
+    with st.form("my_form"):
+        fecha = st.date_input("Fecha")
+        nombre = st.text_input("Nombre del funcionario")
+        novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde","Licencia Luto","Licencia Maternidad","Otro"])
+        observacion = st.text_area("Observación")
 
-# Leer el archivo con pandas
-df = pd.read_csv(file_path)
-print(df)
+        # Botón para enviar el formulario
+        submitted = st.form_submit_button("Guardar")
+        if submitted:
+            guardar_novedad(fecha, nombre, novedad, observacion)
+            st.success("Novedad guardada correctamente")
