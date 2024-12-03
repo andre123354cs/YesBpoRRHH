@@ -141,7 +141,7 @@ def main():
             submitted = st.form_submit_button("Guardar")
             if submitted:
                 db.guardar_novedad(fecha, nombre, novedad, observacion)
-                st.success("Novedad guardada correctamente", hide_index=True, use_container_width=True)
+                st.success("Novedad guardada correctamente")
 
     with st.expander("Funcionarios 👨🏽‍🦳"):
         df = db.obtener_novedades()
@@ -164,7 +164,7 @@ def main():
             df_filtrado = df_filtrado[(df_filtrado['fecha'] >= str(fecha_inicio)) & (df_filtrado['fecha'] <= str(fecha_fin))]
 
         # Mostrar el DataFrame filtrado
-        st.dataframe(df_filtrado)
+        st.dataframe(df_filtrado, hide_index=True, use_container_width=True)
 
         # Generar el gráfico
         st.altair_chart(generar_grafico(df_filtrado, f"Novedades de {funcionario_seleccionado or 'Todos los funcionarios'}"), use_container_width=True)
