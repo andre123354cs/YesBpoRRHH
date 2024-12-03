@@ -14,15 +14,5 @@ st.markdown("""
     <h1 style='text-align: left; color: #008f4c; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
     """, unsafe_allow_html=True)
 
-# Título de la aplicación
-st.title("rrhh - Hoja 1.csv")
-
-# Cargar el archivo
-uploaded_file = st.file_uploader("Selecciona un archivo CSV", type=["csv"])
-
-if uploaded_file is not None:
-    # Leer el archivo en un DataFrame
-    df = pd.read_csv(uploaded_file)
-    
-    # Mostrar el DataFrame en una tabla
-    st.dataframe(df)
+df = pd.read_csv('rrhh - Hoja 1.csv')
+print(df)
