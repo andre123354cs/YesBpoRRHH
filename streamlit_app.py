@@ -97,7 +97,7 @@ def main():
             fecha = st.date_input("Fecha")
             nombre = st.selectbox("Selecciona un funcionario", lista_funcionarios)
             if nombre:
-                st.write(f"Información de {key}:")
+                st.write(f"Información de {area}:")
                 
             novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro"])
             observacion = st.text_area("Observación")
