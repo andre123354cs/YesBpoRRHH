@@ -141,7 +141,7 @@ def main():
             submitted = st.form_submit_button("Guardar")
             if submitted:
                 db.guardar_novedad(fecha, nombre, novedad, observacion)
-                st.success("Novedad guardada correctamente")
+                st.success("Novedad guardada correctamente", hide_index=True, use_container_width=True)
 
     with st.expander("Funcionarios 👨🏽‍🦳"):
         df = db.obtener_novedades()
