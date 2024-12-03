@@ -7,7 +7,7 @@ import streamlit as st
 # Configuración de la página para modo ancho
 st.set_page_config(layout="wide")
 
-with open('styles.css') as f:
+with open('Fuentes.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
