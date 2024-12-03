@@ -14,9 +14,7 @@ st.markdown("""
     <h1 style='text-align: left; color: #008f4c; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
     """, unsafe_allow_html=True)
 
-tab1, tab2, tab3 = st.tabs(["Registro de Novedades 📂", "Funcionarios 👔","Consolidado 📊"])
 
-with tab1:
 
     # Crear el formulario
     with st.form("my_form"):
