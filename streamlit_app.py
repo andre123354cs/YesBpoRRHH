@@ -98,7 +98,7 @@ def main():
             nombre = st.selectbox("Selecciona un funcionario", lista_funcionarios)
             if nombre:
                 st.write(f"Información de {nombre}:")
-                st.write(f"Departamento: {funcionarios[nombre]}")
+                
             novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde", "Licencia Luto", "Licencia Maternidad", "Otro"])
             observacion = st.text_area("Observación")
             submitted = st.form_submit_button("Guardar")
