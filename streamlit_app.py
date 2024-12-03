@@ -66,7 +66,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 def crear_tabla_novedades():
-    conn = sqlite3.connect('novedade.db')
+    conn = sqlite3.connect('novedad.db')
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -87,7 +87,7 @@ crear_tabla_novedades()
 
 # Función para establecer conexión a la base de datos
 def get_db_connection():
-    conn = sqlite3.connect('novedade.db')
+    conn = sqlite3.connect('novedad.db')
     return conn
 
 # Clase para gestionar las operaciones de la base de datos
