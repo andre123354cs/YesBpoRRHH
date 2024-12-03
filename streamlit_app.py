@@ -6,17 +6,17 @@ import streamlit as st
 st.markdown("""
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <img src="https://cdn-icons-png.flaticon.com/128/6429/6429114.png" alt="RRHH YesBpo Logo" width="100" height="100">
-  <h1 style='color: #0b0582; font-size: 50px;'> RRHH YesBpo</h1>
+  <h1 style='color: #0f0a68; font-size: 50px;'> RRHH YesBpo</h1>
   <img src="https://tse3.mm.bing.net/th?id=OIP.mgZxMZpR_P9RB4qAfF1FXQHaGg&pid=Api&P=0&h=180" alt="Otro logo" width="100" height="100">
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
-    <h1 style='text-align: left; color: #0b0582; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
+    <h1 style='text-align: left; color: #0f0a68; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
     """, unsafe_allow_html=True)
 
 def crear_tabla_novedades():
-    conn = sqlite3.connect('novedades.db')
+    conn = sqlite3.connect('novedade.db')
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -37,7 +37,7 @@ crear_tabla_novedades()
 
 # Función para establecer conexión a la base de datos
 def get_db_connection():
-    conn = sqlite3.connect('novedades.db')
+    conn = sqlite3.connect('novedade.db')
     return conn
 
 # Clase para gestionar las operaciones de la base de datos
@@ -81,7 +81,7 @@ def generar_grafico(df, titulo):
 def main():
 
     # Pestaña para registrar novedades
-    with st.expander("Registro de Novedades "):
+    with st.expander("Registro de Novedades 📂"):
         with st.form("my_form"):
             fecha = st.date_input("Fecha")
             nombre = st.text_input("Nombre del funcionario")
@@ -92,7 +92,7 @@ def main():
                 db.guardar_novedad(fecha, nombre, novedad, observacion)
                 st.success("Novedad guardada correctamente")
 
-    with st.expander("Funcionarios"):
+    with st.expander("Funcionarios 👨🏽‍🦳"):
         df = db.obtener_novedades()
 
         # Selector de funcionarios (todos o uno en específico)
