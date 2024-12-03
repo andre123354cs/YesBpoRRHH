@@ -49,7 +49,8 @@ funcionarios = {
     "Felix Santafé": "Ventas",
     "Cristian Matías": "Recursos Humanos",
     "Francy Yulieth Guapacha Lotero": "Contabilidad",
-    "Ana Miryam Gonzalez": "Marketing"
+    "Ana Miryam Gonzalez": "Marketing",
+    "Luisa Fernanda Chavez": "Marketing"
 }
 lista_funcionarios = sorted(funcionarios.keys())
 
