@@ -98,10 +98,24 @@ def main():
         st.altair_chart(generar_grafico(df_filtrado, f"Novedades de {funcionario_seleccionado}"), use_container_width=True)
 
     # Pestaña para ver datos consolidados
-    with st.expander("Consolidado "):
+    with st.expander("Consolidado"):
         df = db.obtener_novedades()
-        st.dataframe(df)
-        st.altair_chart(generar_grafico(df, "Número de novedades por tipo"), use_container_width=True)
+
+        # Crear los selectores de fecha
+        fecha_inicio = st.date_input("Fecha de inicio")
+        fecha_fin = st.date_input("Fecha de fin")
+
+        # Filtrar los datos según las fechas seleccionadas
+        if fecha_inicio and fecha_fin:
+            df_filtrado = df[(df['fecha'] >= str(fecha_inicio)) & (df['fecha'] <= str(fecha_fin))]
+        else:
+            df_filtrado = df
+
+        # Mostrar el DataFrame filtrado
+        st.dataframe(df_filtrado)
+
+        # Generar el gráfico
+        st.altair_chart(generar_grafico(df_filtrado, "Número de novedades por tipo"), use_container_width=True)
 
 if __name__ == "__main__":
     main()
