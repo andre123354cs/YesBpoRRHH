@@ -2,7 +2,8 @@ import altair as alt
 import pandas as pd
 import sqlite3
 import streamlit as st
- 
+import pyrebase
+
 firebaseConfig = {
     "apiKey": "AIzaSyBUxKlDXnPSeNLKYXzsp3pUxJ8giAwSkMQ",
     "authDomain": "metadata-c090e.firebaseapp.com",
