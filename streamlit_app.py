@@ -8,6 +8,7 @@ import streamlit as st
 st.set_page_config(layout="wide")
 
 funcionarios = {
+    "Ashly Nicole Marin": "Sistemas",
     "Yuri Stefania Barahona Larios": "Marketing",
     "Valentina Velez Bedoya": "Sistemas",
     "Luisa Fernanda Duarte": "Contabilidad",
