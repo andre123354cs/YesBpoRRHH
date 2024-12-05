@@ -23,6 +23,7 @@ db = firebase.database()  # Referencia a la base de datos
 st.set_page_config(layout="wide")
 def interfaz():
     funcionarios = {
+        "Mayra Alejandra Baron":"Sistemas",
         "Ashly Nicole Marin": "Sistemas",
         "Yuri Stefania Barahona Larios": "Marketing",
         "Valentina Velez Bedoya": "Sistemas",
