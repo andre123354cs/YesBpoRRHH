@@ -25,17 +25,7 @@ github_repo_url = "https://github.com/andre123354cs/YesBpoRRHH"
 csv_filename = "rrhh - Hoja 1.csv"
 csv_url = f"{github_repo_url}/blob/c82891d903ce08a04340f84c6160e0f1eec8c770/{csv_filename}"
 
-# Download the CSV and handle errors
-try:
-    csv_data = download_csv_from_github(csv_url)
-except (requests.exceptions.RequestException, ValueError) as e:
-    st.error(f"Error downloading the CSV file: {e}")
-    st.stop()
 
-# Load the CSV data into a pandas DataFrame
-df = pd.read_csv(io.BytesIO(csv_data))
-
-# ------ Streamlit UI and data exploration ------
 
 st.header("Transparencia y Claridad en RRHH YesBpo")
 
