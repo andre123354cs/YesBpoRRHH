@@ -6,15 +6,15 @@ df = pd.read_csv("rrhh - Hoja 1.csv")
 
 # Crea un formulario para ingresar nuevos datos
 with st.form("my_form"):
-    fecha = st.date_input("Fecha")
-    novedad = st.text_input("Novedad")
-    funcionario = st.text_input("Funcionario")
-    area = st.text_input("Área")
+    Fecha = st.date_input("Fecha")
+    Novedad = st.text_input("Novedad")
+    Funcionario = st.text_input("Funcionario")
+    Area = st.text_input("Área")
     submitted = st.form_submit_button("Agregar")
 
 # Si se presiona el botón "Agregar", agrega los nuevos datos al DataFrame
 if submitted:
-    new_data = {'Fecha': [fecha], 'Novedad': [novedad], 'Funcionario': [funcionario], 'Área': [area]}
+    new_data = {'Fecha': [Fecha], 'Novedad': [Novedad], 'Funcionario': [Funcionario], 'Area': [Area]}
     df = pd.concat([df, pd.DataFrame(new_data)], ignore_index=True)
 
     # Guarda los cambios en el archivo CSV
