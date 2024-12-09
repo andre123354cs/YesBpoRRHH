@@ -14,13 +14,16 @@ with st.form("my_form"):
 
 # Si se presiona el botón "Agregar", agrega los nuevos datos al DataFrame
 if submitted:
-    new_data = {'Fecha': [Fecha], 'Novedad': [Novedad], 'Funcionario': [Funcionario], 'Area': [Area]}
+    new_data = {'Fecha': [fecha], 'Novedad': [novedad], 'Funcionario': [funcionario], 'Area': [area]}
     df = pd.concat([df, pd.DataFrame(new_data)], ignore_index=True)
 
-    # Guarda los cambios en el archivo CSV
-    df.to_csv("rrhh - Hoja 1.csv", index=False)
+    # Restablecer índice (por si acaso)
+    df.reset_index(drop=True, inplace=True)
 
-    # Muestra el DataFrame actualizado
+    # Guardar los cambios en el archivo CSV en modo 'a+'
+    df.to_csv("rrhh - Hoja 1.csv", index=False, mode='a+', header=False)
+
+    # Mostrar el DataFrame actualizado
     st.dataframe(df)
 
     
