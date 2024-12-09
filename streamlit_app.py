@@ -1,18 +1,23 @@
-
-
 import streamlit as st
 import pandas as pd
+import requests
 
-# Get the raw content URL for the GitHub file
-url = "https://raw.githubusercontent.com/andre123354cs/YesBpoRRHH/blob/08957ddc8b75388d115858e13a6bdb70aa109e55/rrhh%20-%20Hoja%201.csv"
+# Función para leer el CSV desde GitHub
+def leer_csv_github(url, token=None):
+    headers = {}
+    if token:
+        headers["Authorization"] = f"token {token}"
 
-try:
-  # Read the CSV data using pandas
-  df = pd.read_csv(url)
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Levanta una excepción si el estado no es 200
+        content = response.json()["content"]
+        decoded_content = base64.b64decode(content)
+        df = pd.read_csv(io.StringIO(decoded_content.decode('utf-8')))
+        return df
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error al leer el archivo CSV: {e}")
+        return None
 
-  # Display the DataFrame in Streamlit
-  st.dataframe(df)
-
-except Exception as e:
-  # Handle potential errors (e.g., network issues, invalid URL)
-  st.error(f"Error reading the CSV file: {e}")
+# URL del archivo CSV (reemplaza con tu URL)
+url = "https://raw.githubusercontent.com/andre123354cs/YesBpoRRHH/blob/08957ddc8b75388d115858e13a6bdb70aa109e55/rrhh%20-%20Hoja%
