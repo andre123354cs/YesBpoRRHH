@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-df = df.to_csv("rrhh - Hoja 1.csv")
+df = pd.read_csv("rrhh - Hoja 1.csv")
 
 # Crea un formulario para ingresar nuevos datos
 with st.form("my_form"):
