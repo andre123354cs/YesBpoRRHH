@@ -312,7 +312,7 @@ def manage_users_module():
 if __name__ == "__main__":
     main()
 
+    
+df = pd.read_csv("Hoja 1.csv")
+print(df.head())
 
-
-# Configuración de la página para modo ancho
-    # Pestaña para registrar novedades
