@@ -83,10 +83,6 @@ def interfaz():
         <h1 style='text-align: left; color: #0f0a68; font-size: 15px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
         """, unsafe_allow_html=True)
 
-
-    df = pd.read_csv("Hoja 1.csv")
-    print(df.head())
-
     crear_tabla_novedades()
     db = NovedadesDB()
     with st.expander("Registro de Novedades 📂"):
