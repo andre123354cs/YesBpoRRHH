@@ -309,10 +309,13 @@ def manage_users_module():
                 st.error(f"❌ Error al actualizar el usuario: {e}")
 
 
+
+df = pd.read_csv("Hoja 1.csv")
+print(df.head())
+
+
 if __name__ == "__main__":
     main()
 
     
-df = pd.read_csv("Hoja 1.csv")
-print(df.head())
 
