@@ -55,11 +55,7 @@ with tab1:
 
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
-    # Filtrar el DataFrame basado en el rango seleccionado
-    if fecha_inicio and fecha_fin:
-      df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) & (dfDatos['Fecha'] <= fecha_fin)]
-    else:
-      df_filtrado = dfDatos.copy()
+    
     
     
     suma_tiempo = df_filtrado['Tiempo'].sum()
