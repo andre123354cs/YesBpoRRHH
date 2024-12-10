@@ -50,7 +50,7 @@ with tab1:
     st.dataframe(df_filtrado, use_container_width=True)
     
     suma_tiempo = df_filtrado['Tiempo'].sum()
-
+    st.markdown(suma_tiempo)
     
     df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
 
