@@ -67,7 +67,7 @@ with tab1:
 
 with tab2:
     st.markdown("""
-    <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia segun filtro</h1>
+    <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia por persona</h1>
     """, unsafe_allow_html=True)
     funcionarios_unicos = dfDatos['Funcionario'].unique()
     
