@@ -62,7 +62,6 @@ with tab1:
       df_filtrado = dfDatos.copy()
     
     # Mostrar el DataFrame filtrado
-    st.dataframe(df_filtrado, use_container_width=True)
     
     suma_tiempo = df_filtrado['Tiempo'].sum()
     st.markdown(f"""
