@@ -50,15 +50,15 @@ with tab1:
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
 
-    fig = px.bar(df_filtrado, x='Novedad', y='Fecha',barmode='group')
+
+    fig = px.bar(df_filtrado, x='Novedad', y='Fecha', color='Novedad', barmode='group',
+            color_discrete_sequence=px.colors.qualitative.Pastel)
     fig.update_layout(
+        title_text='Conteo de Novedades por Tipo',
         xaxis_title='Novedad',
         yaxis_title='Conteo',
-        title='Conteo de Novedades por Tipo'
+        legend_title='Tipo de Novedad'
     )
-    
-    # Mostrar la gráfica en Streamlit
-    st.plotly_chart(fig)
 
 with tab2:
     st.markdown("""
