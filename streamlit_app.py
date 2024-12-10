@@ -10,7 +10,7 @@ st.set_page_config(
     )
 
 st.markdown("""
-  <div style="display: flex; justify-content: Center; align-items: Left;">
+  <div style="display: flex; justify-content: Center; align-items: Center;">
     <img src="https://cdn-icons-png.flaticon.com/128/609/609116.png" alt="RRHH YesBpo Logo" width="100" height="100">
     <h1 style='color: #0f0a68; font-size: 29px;'> Proyecto Recursos Humanos</h1>
   </div>
