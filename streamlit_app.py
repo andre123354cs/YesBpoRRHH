@@ -34,20 +34,20 @@ with tab1:
     st.write("Contenido de la pestaña 1")
 
     
-dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
-
-# Convert date_input results to datetime format for comparison
-fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio"))
-fecha_fin = pd.to_datetime(st.date_input("Fecha de fin"))
-
-# Filtrar el DataFrame basado en el rango seleccionado
-if fecha_inicio and fecha_fin:
-  df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) & (dfDatos['Fecha'] <= fecha_fin)]
-else:
-  df_filtrado = dfDatos.copy()
-
-# Mostrar el DataFrame filtrado
-st.dataframe(df_filtrado, use_container_width=True)
+    dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
+    
+    # Convert date_input results to datetime format for comparison
+    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio"))
+    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin"))
+    
+    # Filtrar el DataFrame basado en el rango seleccionado
+    if fecha_inicio and fecha_fin:
+      df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) & (dfDatos['Fecha'] <= fecha_fin)]
+    else:
+      df_filtrado = dfDatos.copy()
+    
+    # Mostrar el DataFrame filtrado
+    st.dataframe(df_filtrado, use_container_width=True)
 
 
 with tab2:
