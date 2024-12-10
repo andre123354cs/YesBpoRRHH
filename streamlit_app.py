@@ -68,7 +68,7 @@ with tab1:
     df_agrupado = df_filtrado.groupby('Funcionario').size().reset_index(name='Conteo')
 
     # Crear la figura con Plotly Express (Gráfica de Barras)
-    fig = px.bar(df_agrupado, x='Funcionario', y='Conteo', color='Funcionario',
+    fig = px.bar(df_agrupado, x='Funcionario', y='Conteo', color='Funcionario', text_auto=True,
                 color_discrete_sequence=px.colors.qualitative.Pastel)
     
     # Personalizar la gráfica
