@@ -53,3 +53,18 @@ with tab1:
 
 with tab2:
     st.write("Contenido de la pestaña 2")
+    funcionarios_unicos = dfDatos['Funcionario'].unique()
+    
+    # Crear un elemento de selección múltiple para elegir funcionarios
+    funcionario_seleccionado = st.multiselect('Selecciona funcionarios', funcionarios_unicos)
+    
+    # Filtrar el DataFrame basado en el rango de fechas y funcionarios seleccionados
+    if fecha_inicio and fecha_fin and funcionario_seleccionado:
+        df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
+                             (dfDatos['Fecha'] <= fecha_fin) &
+                             (dfDatos['Funcionario'].isin(funcionario_seleccionado))]
+    else:
+        df_filtrado = dfDatos.copy()
+    
+    # Mostrar el DataFrame filtrado
+    st.dataframe(df_filtrado, use_container_width=True)
