@@ -50,6 +50,15 @@ with tab1:
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
 
+    fig = px.histogram(df_filtrado, x='Novedad', y='Fecha', histfunc='count', color='Novedad')
+    fig.update_layout(
+        xaxis_title='Novedad',
+        yaxis_title='Conteo',
+        title='Conteo de Novedades por Fecha y Tipo'
+    )
+
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig)
 
 with tab2:
     st.markdown("""
