@@ -50,7 +50,7 @@ with tab1:
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
 
-    fig = px.bar(df_filtrado, x='Novedad', y='Fecha', color='Novedad', barmode='group')
+    fig = px.bar(df_filtrado, x='Novedad', y='Fecha',barmode='group')
     fig.update_layout(
         xaxis_title='Novedad',
         yaxis_title='Conteo',
