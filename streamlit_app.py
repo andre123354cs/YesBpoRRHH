@@ -52,7 +52,7 @@ with tab1:
 
     df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
 
-    fig = px.bar(df_agrupado, x='Novedad ', y='Conteo'
+    fig = px.bar(df_agrupado, x='Novedad ', y='Conteo',
         title_text='Conteo de Novedades por Tipo',
         xaxis_title='Novedad ',
         yaxis_title='Conteo',
