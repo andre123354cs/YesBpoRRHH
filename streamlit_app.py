@@ -13,7 +13,6 @@ st.markdown("""
   <div style="display: flex; justify-content: center; align-items: center;">
     <img src="https://cdn-icons-png.flaticon.com/128/609/609116.png" alt="RRHH YesBpo Logo" width="100" height="100">
     <h1 style='color: #0f0a68; font-size: 29px;'> RRHH YesBpo</h1>
-    <img src="tse3.mm.bing.net/th?id=OIP.mgZxMZpR_P9RB4qAfF1FXQHaGg&pid=Api&P=0&h=180" alt="Otro logo" width="100" height="100">
   </div>
 """, unsafe_allow_html=True)
     
