@@ -32,7 +32,9 @@ tab1, tab2 = st.tabs(["Historia", "Funcionarios"])
 
 with tab1:
     st.write("Aqui podemos ver la historia segun filtro")
-
+    st.markdown("""
+    <h1 style='text-align: left; color: #0f0a68; font-size: 15px;'>Aqui podemos ver la historia segun filtro</h1>
+    """, unsafe_allow_html=True)
     
     dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
     
