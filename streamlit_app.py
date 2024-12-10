@@ -48,7 +48,8 @@ with tab1:
     
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
-
+    suma_tiempo = df_filtrado['tiempo'].sum()
+    st.markdown(suma_tiempo)
     df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
 
     # Crear la figura con Plotly Express (Gráfica de Barras)
