@@ -66,7 +66,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
     
-    df_agrupado = df_filtrado.groupby('Funcionario').size().reset_index(name='Conteo')
+    df_agrupado = df_filtrado.groupby('Funcionario', 'Fecha').size().reset_index(name='Conteo')
 
     st.write(df_agrupado.columns)
     
