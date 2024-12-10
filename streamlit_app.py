@@ -50,9 +50,9 @@ with tab1:
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
 
+    df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
 
-    fig = px.bar(df_filtrado, x='Novedad ', y='Fecha', color='Novedad ', barmode='group',
-            color_discrete_sequence=px.colors.qualitative.Pastel)
+    fig = px.bar(df_agrupado, x='Novedad ', y='Conteo',            color_discrete_sequence=px.colors.qualitative.Pastel)
     fig.update_layout(
         title_text='Conteo de Novedades por Tipo',
         xaxis_title='Novedad ',
