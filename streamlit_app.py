@@ -33,13 +33,28 @@ with tab1:
     st.markdown("""
     <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia segun filtro</h1>
     """, unsafe_allow_html=True)
-    
+
     dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
     
     # Convert date_input results to datetime format for comparison
     fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio"))
     fecha_fin = pd.to_datetime(st.date_input("Fecha de fin"))
-    
+
+    novedades_unicas = dfDatos['Novedad'].unique()
+
+    # Crear un elemento de selección múltiple para elegir novedades
+    novedad_seleccionada = st.multiselect('Selecciona novedades', novedades_unicas)
+
+    # Filtrar el DataFrame basado en el rango de fechas y novedades seleccionadas
+    if fecha_inicio and fecha_fin and novedad_seleccionada:
+        df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
+                             (dfDatos['Fecha'] <= fecha_fin) &
+                             (dfDatos['Novedad'].isin(novedad_seleccionada))]
+    else:
+        df_filtrado = dfDatos.copy()
+
+    # Mostrar el DataFrame filtrado
+    st.dataframe(df_filtrado, use_container_width=True)
     # Filtrar el DataFrame basado en el rango seleccionado
     if fecha_inicio and fecha_fin:
       df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) & (dfDatos['Fecha'] <= fecha_fin)]
@@ -52,7 +67,7 @@ with tab1:
     suma_tiempo = df_filtrado['Tiempo'].sum()
     st.markdown(f"""
     <p style="font-size: 18px; color: blue;">
-    La totalidad del tiempo en llegadas tarde es: <b>{suma_tiempo}</b> [unidades de tiempo]
+    La totalidad del tiempo en llegadas tarde es: <b>{suma_tiempo}</b> [Horas]
     </p>
     """, unsafe_allow_html=True)
     
