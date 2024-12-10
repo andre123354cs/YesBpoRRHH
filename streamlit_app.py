@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
     )
 
- st.markdown("""
+st.markdown("""
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <img src="https://cdn-icons-png.flaticon.com/128/6429/6429114.png" alt="RRHH YesBpo Logo" width="100" height="100">
       <h1 style='color: #0f0a68; font-size: 20px;'> RRHH YesBpo</h1>
