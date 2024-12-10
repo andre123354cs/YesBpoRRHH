@@ -31,7 +31,7 @@ dfDatos= pd.read_csv(url)
 tab1, tab2 = st.tabs(["Historia", "Funcionarios"])
 
 with tab1:
-    st.write("Contenido de la pestaña 1")
+    st.write("Aqui podemos ver la historia segun filtro")
 
     
     dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
