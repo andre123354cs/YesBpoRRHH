@@ -50,7 +50,11 @@ with tab1:
     st.dataframe(df_filtrado, use_container_width=True)
     
     suma_tiempo = df_filtrado['Tiempo'].sum()
-    st.markdown(suma_tiempo)
+    st.markdown(f"""
+    <p style="font-size: 18px; color: blue;">
+    La totalidad del tiempo en llegadas tarde es: <b>{suma_tiempo}</b> [unidades de tiempo]
+    </p>
+    """, unsafe_allow_html=True)
     
     df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
 
