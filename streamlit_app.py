@@ -70,7 +70,6 @@ with tab1:
 
     df_agrupado['Fecha'] = df_agrupado['Fecha'].dt.strftime('%d/%m/%Y')
     
-    st.write(df_agrupado.columns)
     
     # Crear la figura con Plotly Express (Gráfica de Barras)
     fig = px.bar(df_agrupado, x='Fecha', y='Conteo', color='Funcionario', text_auto=True,
