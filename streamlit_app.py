@@ -74,7 +74,7 @@ with tab1:
     # Personalizar la gráfica
     fig.update_layout(
         title_text='Conteo de Novedades',
-        xaxis_title='Funcionario',
+        xaxis_title='Funcionarios',
         yaxis_title='Cantidad'
     )
     
