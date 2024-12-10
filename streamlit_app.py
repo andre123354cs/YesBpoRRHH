@@ -80,22 +80,6 @@ with tab1:
     
     # Mostrar la gráfica en Streamlit
     st.plotly_chart(fig)
-
-    df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
-
-    # Crear la figura con Plotly Express (Gráfica de Barras)
-    fig = px.bar(df_agrupado, x='Novedad', y='Conteo', color='Novedad',
-                color_discrete_sequence=px.colors.qualitative.Pastel)
-    
-    # Personalizar la gráfica
-    fig.update_layout(
-        title_text='Conteo de Novedades',
-        xaxis_title='Novedad',
-        yaxis_title='Cantidad'
-    )
-    
-    # Mostrar la gráfica en Streamlit
-    st.plotly_chart(fig)
 with tab2:
     st.markdown("""
     <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia por persona</h1>
