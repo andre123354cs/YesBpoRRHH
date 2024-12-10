@@ -28,7 +28,12 @@ url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid=
 
 dfDatos= pd.read_csv(url)
 
+tab1, tab2 = st.tabs(["Tab 1", "Tab 2"])
 
+with tab1:
+    st.write("Contenido de la pestaña 1")
+
+    
 dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
 
 # Convert date_input results to datetime format for comparison
@@ -43,3 +48,7 @@ else:
 
 # Mostrar el DataFrame filtrado
 st.dataframe(df_filtrado, use_container_width=True)
+
+
+with tab2:
+    st.write("Contenido de la pestaña 2")
