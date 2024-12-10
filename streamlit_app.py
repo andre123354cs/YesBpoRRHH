@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(
+    page_title="MetaData",
+    page_icon=":chart_with_upwards_trend:",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+    )
 
 st.markdown("""
     <h1 style='text-align: left; color: #005780; font-size: 24px;'>Appsheet </h1>
