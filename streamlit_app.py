@@ -60,6 +60,8 @@ with tab1:
         legend_title='Tipo de Novedad'
     )
 
+    st.plotly(fig)
+
 with tab2:
     st.markdown("""
     <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia segun filtro</h1>
