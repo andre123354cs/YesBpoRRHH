@@ -68,7 +68,7 @@ with tab1:
     
     df_agrupado = df_filtrado.groupby('Funcionario', 'Fecha').size().reset_index(name='Conteo')
 
-    st.dataframe(df_agrupado)
+    st.write(df_agrupado.columns)
     
     # Crear la figura con Plotly Express (Gráfica de Barras)
     fig = px.bar(df_agrupado, x='Fecha', y='Conteo', color='Funcionario', text_auto=True,
