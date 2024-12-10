@@ -52,14 +52,19 @@ with tab1:
 
     df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
 
-    fig = px.bar(df_agrupado, x='Novedad ', y='Conteo',
-        title_text='Conteo de Novedades por Tipo',
-        xaxis_title='Novedad ',
-        yaxis_title='Conteo',
-        
+    # Crear la figura con Plotly Express (Gráfica de Barras)
+    fig = px.bar(df_agrupado, x='Novedad', y='Conteo', color='Novedad',
+                color_discrete_sequence=px.colors.qualitative.Pastel)
+    
+    # Personalizar la gráfica
+    fig.update_layout(
+        title_text='Conteo de Novedades',
+        xaxis_title='Novedad',
+        yaxis_title='Cantidad'
     )
-
-    st.plotly_chart(fig, use_container_width=True)
+    
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig)
 
 with tab2:
     st.markdown("""
