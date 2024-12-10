@@ -70,16 +70,16 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
     
-    df_agrupado = df_filtrado.groupby('Novedad').size().reset_index(name='Conteo')
+    df_agrupado = df_filtrado.groupby('Funcionario').size().reset_index(name='Conteo')
 
     # Crear la figura con Plotly Express (Gráfica de Barras)
-    fig = px.bar(df_agrupado, x='Novedad', y='Conteo', color='Novedad',
+    fig = px.bar(df_agrupado, x='Funcionario', y='Conteo', color='Funcionario',
                 color_discrete_sequence=px.colors.qualitative.Pastel)
     
     # Personalizar la gráfica
     fig.update_layout(
         title_text='Conteo de Novedades',
-        xaxis_title='Novedad',
+        xaxis_title='Funcionario',
         yaxis_title='Cantidad'
     )
     
