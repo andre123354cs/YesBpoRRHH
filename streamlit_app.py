@@ -60,7 +60,7 @@ with tab1:
         legend_title='Tipo de Novedad'
     )
 
-    st.plotly(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
     st.markdown("""
