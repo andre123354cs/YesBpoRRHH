@@ -58,10 +58,7 @@ with tab2:
     # Crear un elemento de selección múltiple para elegir funcionarios
     funcionario_seleccionado = st.multiselect('Selecciona funcionarios', funcionarios_unicos)
     
-    dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
     
-    # Convert date_input results to datetime format for comparison
-    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio"))
     fecha_fin = pd.to_datetime(st.date_input("Fecha de fin"))    if fecha_inicio and fecha_fin and funcionario_seleccionado:
         df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
                              (dfDatos['Fecha'] <= fecha_fin) &
