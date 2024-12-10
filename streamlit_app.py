@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 st.set_page_config(
     page_title="MetaData",
@@ -65,10 +66,11 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
     
-    df_agrupado = df_filtrado.groupby('Funcionario').size().reset_index(name='Conteo')
+    df_agrupado = df_filtrado.groupby('Funcionario','Fecha').size().reset_index(name='Conteo')
 
+    
     # Crear la figura con Plotly Express (Gráfica de Barras)
-    fig = px.bar(df_agrupado, x='Funcionario', y='Conteo', color='Funcionario', text_auto=True,
+    fig = px.bar(df_agrupado, x='Fecha', y='Conteo', color='Funcionario', text_auto=True,
                 color_discrete_sequence=px.colors.qualitative.Pastel)
     
     # Personalizar la gráfica
