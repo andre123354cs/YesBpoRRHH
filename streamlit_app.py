@@ -65,7 +65,7 @@ with tab1:
     
     suma_tiempo = df_filtrado['Tiempo'].sum()
     st.markdown(f"""
-    <p style="font-size: 18px; color: blue;">
+    <p style="font-size: 20px; color: blue;">
     La totalidad del tiempo en llegadas tarde es: <b>{suma_tiempo}</b> [Minutos]
     </p>
     """, unsafe_allow_html=True)
