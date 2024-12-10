@@ -28,7 +28,7 @@ url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid=
 
 dfDatos= pd.read_csv(url)
 
-tab1, tab2 = st.tabs(["Tab 1", "Tab 2"])
+tab1, tab2 = st.tabs(["Historia", "Funcionarios"])
 
 with tab1:
     st.write("Contenido de la pestaña 1")
