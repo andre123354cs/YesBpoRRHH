@@ -28,12 +28,7 @@ dfDatos = pd.read_csv(url)
 
 tab1, tab2 = st.tabs(["Historia", "Funcionarios"])
 
-# Convertir la columna 'Fecha' a datetime y formatearla a 'día/mes/año'
-dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], dayfirst=True)
-dfDatos['Fecha'] = dfDatos['Fecha'].dt.strftime('%d/%m/%Y')
-    
-# Convertir la columna 'Fecha' de nuevo a datetime para el filtrado
-dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], format='%d/%m/%Y')
+
 
 # Determinar el mínimo y máximo de fechas
 fecha_min = dfDatos['Fecha'].min()
