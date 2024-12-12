@@ -57,7 +57,7 @@ with tab1:
     novedad_seleccionada = st.multiselect('Selecciona novedades', novedades_unicas)
 
     df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
-                              (dfDatos['Fecha'] <= fecha_fin) )
+                              (dfDatos['Fecha'] <= fecha_fin) ]
     
     if novedad_seleccionada:
         df_filtrado = dfDatos[dfDatos['Novedad'].isin(novedad_seleccionada)]
