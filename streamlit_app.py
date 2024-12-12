@@ -58,10 +58,10 @@ with tab1:
     df_filtrado = dfDatos
     
     if novedad_seleccionada:
-        df_filtrado = dfDatos[dfDatos['Novedad'].isin(novedad_seleccionada)]
+        df_filtrado = df_filtrado[dfDatos['Novedad'].isin(novedad_seleccionada)]
 
 
-    df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
+    df_filtrado = df_filtrado[(dfDatos['Fecha'] >= fecha_inicio) &
                               (dfDatos['Fecha'] <= fecha_fin) ]
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
