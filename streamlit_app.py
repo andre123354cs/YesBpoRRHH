@@ -48,8 +48,6 @@ with tab1:
     fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, min_value=fecha_min, max_value=fecha_max), format='%d/%m/%Y')
     fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, min_value=fecha_min, max_value=fecha_max), format='%d/%m/%Y')
 
-
-
     novedades_unicas = dfDatos['Novedad'].unique()
 
     # Crear un elemento de selección múltiple para elegir novedades
@@ -60,9 +58,8 @@ with tab1:
     if novedad_seleccionada:
         df_filtrado = df_filtrado[dfDatos['Novedad'].isin(novedad_seleccionada)]
 
-
-    df_filtrado = df_filtrado[(dfDatos['Fecha'] >= fecha_inicio) &
-                              (dfDatos['Fecha'] <= fecha_fin) ]
+    df_filtrado = df_filtrado[(dfDatos['Fecha'] >= fecha_inicio) & (dfDatos['Fecha'] <= fecha_fin)]
+    
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
 
@@ -73,24 +70,41 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-    df_agrupado = df_filtrado.groupby(['Funcionario', 'Fecha']).size().reset_index(name='Conteo').sort_values(by='Fecha')
+    # Agrupar los datos por 'Funcionario' y 'Novedad'
+    df_agrupado_funcionario = df_filtrado.groupby(['Funcionario', 'Novedad']).size().reset_index(name='Conteo')
+    
+    # Ordenar los datos por 'Funcionario' y 'Fecha'
+    df_agrupado = df_filtrado.groupby(['Fecha', 'Funcionario']).size().reset_index(name='Conteo').sort_values(by='Fecha')
 
     df_agrupado['Fecha'] = df_agrupado['Fecha'].dt.strftime('%d/%m/%Y')
 
-    
-    # Crear la figura con Plotly Express (Gráfica de Barras)
-    fig = px.bar(df_agrupado, x='Fecha', y='Conteo', color='Funcionario', text_auto=True,
-                 color_discrete_sequence=px.colors.qualitative.Pastel)
+    # Crear la figura con Plotly Express (Gráfica de Barras) por Fecha
+    fig_fecha = px.bar(df_agrupado, x='Fecha', y='Conteo', color='Funcionario', text_auto=True,
+                       color_discrete_sequence=px.colors.qualitative.Pastel)
 
     # Personalizar la gráfica
-    fig.update_layout(
-        title_text='Conteo de Novedades',
+    fig_fecha.update_layout(
+        title_text='Conteo de Novedades por Fecha',
         xaxis_title='Fecha',
         yaxis_title='Cantidad'
     )
 
     # Mostrar la gráfica en Streamlit
-    st.plotly_chart(fig)
+    st.plotly_chart(fig_fecha)
+
+    # Crear la figura con Plotly Express (Gráfica de Barras) por Funcionario
+    fig_funcionario = px.bar(df_agrupado_funcionario, x='Funcionario', y='Conteo', color='Novedad', text_auto=True,
+                             color_discrete_sequence=px.colors.qualitative.Pastel)
+
+    # Personalizar la gráfica
+    fig_funcionario.update_layout(
+        title_text='Conteo de Novedades por Funcionario',
+        xaxis_title='Funcionario',
+        yaxis_title='Cantidad de Novedades'
+    )
+
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig_funcionario)
 
 with tab2:
     st.markdown("""
@@ -116,5 +130,3 @@ with tab2:
 
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
-
-
