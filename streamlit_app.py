@@ -45,8 +45,8 @@ with tab1:
     """, unsafe_allow_html=True)
     
     # Convertir date_input results a formato datetime para comparación
-    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, min_value=fecha_min, max_value=fecha_max))
-    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, min_value=fecha_min, max_value=fecha_max))
+    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, min_value=fecha_min, max_value=fecha_max), format='%d/%m/%Y')
+    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, min_value=fecha_min, max_value=fecha_max), format='%d/%m/%Y')
 
     novedades_unicas = dfDatos['Novedad'].unique()
 
