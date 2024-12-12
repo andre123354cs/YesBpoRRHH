@@ -73,7 +73,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-    df_agrupado = df_filtrado.groupby(['Funcionario', 'Fecha']).size().reset_index(name='Conteo')
+    df_agrupado = df_filtrado.groupby(['Funcionario', 'Fecha']).size().reset_index(name='Conteo').sort_values(by='Fecha')
 
     df_agrupado['Fecha'] = df_agrupado['Fecha'].dt.strftime('%d/%m/%Y')
 
