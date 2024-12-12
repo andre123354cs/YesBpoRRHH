@@ -37,6 +37,7 @@ with tab1:
 
     dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
     dfDatos['Fecha'] = dfDatos['Fecha'].dt.strftime('%d/%m/%Y')    
+    
     # Convert date_input results to datetime format for comparison
     fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio"))
     fecha_fin = pd.to_datetime(st.date_input("Fecha de fin"))
@@ -67,8 +68,6 @@ with tab1:
     """, unsafe_allow_html=True)
     
     df_agrupado = df_filtrado.groupby(['Funcionario', 'Fecha']).size().reset_index(name='Conteo')
-
-    df_agrupado['Fecha'] = df_agrupado['Fecha'].dt.strftime('%d/%m/%Y')
     
     
     # Crear la figura con Plotly Express (Gráfica de Barras)
