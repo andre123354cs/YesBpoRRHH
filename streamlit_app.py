@@ -36,6 +36,7 @@ with tab1:
     """, unsafe_allow_html=True)
 
     dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'])  # Ensure 'Fecha' is datetime
+    dfDatos['Fecha'] = dfDatos['Fecha'].dt.date
     
     # Convert date_input results to datetime format for comparison
     fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio"))
