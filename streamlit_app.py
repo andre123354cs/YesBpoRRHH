@@ -106,3 +106,22 @@ with tab1:
     # Mostrar la gráfica en Streamlit
     st.plotly_chart(fig_funcionario)
 
+    # Agrupar los datos para encontrar la novedad más repetitiva
+    df_agrupado_novedad = df_filtrado['Novedad'].value_counts().reset_index()
+    df_agrupado_novedad.columns = ['Novedad', 'Conteo']
+
+    # Crear la figura con Plotly Express (Gráfica de Barras) para la novedad más repetitiva
+    fig_novedad = px.bar(df_agrupado_novedad, x='Novedad', y='Conteo', text_auto=True,
+                         color_discrete_sequence=px.colors.qualitative.Pastel)
+
+    # Personalizar la gráfica
+    fig_novedad.update_layout(
+        title_text='Novedad Más Repetitiva',
+        xaxis_title='Novedad',
+        yaxis_title='Cantidad de Repeticiones'
+    )
+
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig_novedad)
+
+
