@@ -26,7 +26,7 @@ url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid=
 
 dfDatos = pd.read_csv(url)
 
-tab1, tab2 = st.tabs(["Historia", "-"])
+tab1, tab2 = st.tabs(["Reportes Historicos", "-"])
 
 # Convertir la columna 'Fecha' a datetime y formatearla a 'día/mes/año'
 dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], dayfirst=True)
