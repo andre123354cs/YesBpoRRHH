@@ -26,7 +26,7 @@ url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid=
 
 dfDatos = pd.read_csv(url)
 
-tab1, tab2 = st.tabs(["Historia", "Funcionarios"])
+tab1, tab2 = st.tabs(["Historia", "-"])
 
 # Convertir la columna 'Fecha' a datetime y formatearla a 'día/mes/año'
 dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], dayfirst=True)
@@ -106,27 +106,3 @@ with tab1:
     # Mostrar la gráfica en Streamlit
     st.plotly_chart(fig_funcionario)
 
-with tab2:
-    st.markdown("""
-    <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia por persona</h1>
-    """, unsafe_allow_html=True)
-
-    funcionarios_unicos = dfDatos['Funcionario'].unique()
-    
-    # Crear un elemento de selección múltiple para elegir funcionarios
-    funcionario_seleccionado = st.multiselect('Selecciona funcionarios', funcionarios_unicos)
-
-    # Convertir date_input results a formato datetime para comparación
-    fecha_inicio_func = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, key='fecha_inicio_func', min_value=fecha_min, max_value=fecha_max))
-    fecha_fin_func = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, key='fecha_fin_func', min_value=fecha_min, max_value=fecha_max))
-
-    # Filtrar el DataFrame basado en el rango de fechas y funcionarios seleccionados
-    if fecha_inicio_func and fecha_fin_func and funcionario_seleccionado:
-        df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio_func) &
-                              (dfDatos['Fecha'] <= fecha_fin_func) &
-                              (dfDatos['Funcionario'].isin(funcionario_seleccionado))]
-    else:
-        df_filtrado = dfDatos.copy()
-
-    # Mostrar el DataFrame filtrado
-    st.dataframe(df_filtrado, use_container_width=True)
