@@ -75,6 +75,9 @@ with tab1:
 
     df_agrupado = df_filtrado.groupby(['Funcionario', 'Fecha']).size().reset_index(name='Conteo')
 
+    df_agrupado['Fecha'] = df_agrupado['Fecha'].dt.strftime('%d/%m/%Y')
+
+    
     # Crear la figura con Plotly Express (Gráfica de Barras)
     fig = px.bar(df_agrupado, x='Fecha', y='Conteo', color='Funcionario', text_auto=True,
                  color_discrete_sequence=px.colors.qualitative.Pastel)
