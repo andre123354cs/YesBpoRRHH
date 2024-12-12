@@ -41,8 +41,8 @@ with tab1:
     dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], format='%d/%m/%Y')
 
     # Convertir date_input results a formato datetime para comparación
-    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=pd.to_datetime("2024-01-01")))
-    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=pd.to_datetime("2024-12-31")))
+    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=pd.to_datetime("2024/01/01")))
+    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=pd.to_datetime("2025/12/31")))
 
     novedades_unicas = dfDatos['Novedad'].unique()
 
