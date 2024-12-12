@@ -56,13 +56,10 @@ with tab1:
     # Crear un elemento de selección múltiple para elegir novedades
     novedad_seleccionada = st.multiselect('Selecciona novedades', novedades_unicas)
 
-    # Filtrar el DataFrame basado en el rango de fechas y novedades seleccionadas
-    if fecha_inicio and fecha_fin and novedad_seleccionada:
-        df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
+
+    df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
                               (dfDatos['Fecha'] <= fecha_fin) &
                               (dfDatos['Novedad'].isin(novedad_seleccionada))]
-    else:
-        df_filtrado = dfDatos.copy()
 
     # Mostrar el DataFrame filtrado
     st.dataframe(df_filtrado, use_container_width=True)
