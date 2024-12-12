@@ -48,8 +48,7 @@ with tab1:
     fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, min_value=fecha_min, max_value=fecha_max), format='%d/%m/%Y')
     fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, min_value=fecha_min, max_value=fecha_max), format='%d/%m/%Y')
 
-    st.write(fecha_inicio)
-    st.write(fecha_fin)
+
 
     novedades_unicas = dfDatos['Novedad'].unique()
 
