@@ -28,21 +28,25 @@ dfDatos = pd.read_csv(url)
 
 tab1, tab2 = st.tabs(["Historia", "Funcionarios"])
 
+# Convertir la columna 'Fecha' a datetime y formatearla a 'día/mes/año'
+dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], dayfirst=True)
+dfDatos['Fecha'] = dfDatos['Fecha'].dt.strftime('%d/%m/%Y')
+    
+# Convertir la columna 'Fecha' de nuevo a datetime para el filtrado
+dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], format='%d/%m/%Y')
+
+# Determinar el mínimo y máximo de fechas
+fecha_min = dfDatos['Fecha'].min()
+fecha_max = dfDatos['Fecha'].max()
+
 with tab1:
     st.markdown("""
     <h1 style='text-align: left; color: #0f0a68; font-size: 25px;'>Aqui podemos ver la historia segun filtro</h1>
     """, unsafe_allow_html=True)
-
-    # Convertir la columna 'Fecha' a datetime y formatearla a 'día/mes/año'
-    dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], dayfirst=True)
-    dfDatos['Fecha'] = dfDatos['Fecha'].dt.strftime('%d/%m/%Y')
     
-    # Convertir la columna 'Fecha' de nuevo a datetime para el filtrado
-    dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], format='%d/%m/%Y')
-
     # Convertir date_input results a formato datetime para comparación
-    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=pd.to_datetime("2024/01/01")))
-    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=pd.to_datetime("2025/12/31")))
+    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, min_value=fecha_min, max_value=fecha_max))
+    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, min_value=fecha_min, max_value=fecha_max))
 
     novedades_unicas = dfDatos['Novedad'].unique()
 
@@ -93,17 +97,14 @@ with tab2:
     # Crear un elemento de selección múltiple para elegir funcionarios
     funcionario_seleccionado = st.multiselect('Selecciona funcionarios', funcionarios_unicos)
 
-    # Convertir la columna 'Fecha' de nuevo a datetime para el filtrado
-    dfDatos['Fecha'] = pd.to_datetime(dfDatos['Fecha'], format='%d/%m/%Y')
-    
     # Convertir date_input results a formato datetime para comparación
-    fecha_inicio = pd.to_datetime(st.date_input("Fecha de inicio", value=pd.to_datetime("2024-01-01")))
-    fecha_fin = pd.to_datetime(st.date_input("Fecha de fin", value=pd.to_datetime("2024-12-31")))
+    fecha_inicio_func = pd.to_datetime(st.date_input("Fecha de inicio", value=fecha_min, key='fecha_inicio_func', min_value=fecha_min, max_value=fecha_max))
+    fecha_fin_func = pd.to_datetime(st.date_input("Fecha de fin", value=fecha_max, key='fecha_fin_func', min_value=fecha_min, max_value=fecha_max))
 
     # Filtrar el DataFrame basado en el rango de fechas y funcionarios seleccionados
-    if fecha_inicio and fecha_fin and funcionario_seleccionado:
-        df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio) &
-                              (dfDatos['Fecha'] <= fecha_fin) &
+    if fecha_inicio_func and fecha_fin_func and funcionario_seleccionado:
+        df_filtrado = dfDatos[(dfDatos['Fecha'] >= fecha_inicio_func) &
+                              (dfDatos['Fecha'] <= fecha_fin_func) &
                               (dfDatos['Funcionario'].isin(funcionario_seleccionado))]
     else:
         df_filtrado = dfDatos.copy()
